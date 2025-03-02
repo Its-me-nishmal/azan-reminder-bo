@@ -323,9 +323,13 @@ async function startBot() {
             let subscribers = fs.existsSync('subscribers.json')
                 ? JSON.parse(fs.readFileSync('subscribers.json', 'utf-8'))
                 : [];
-            for (const subscriber of subscribers) {
-                await sock.sendMessage(subscriber, { text: randomMessage });
-            }
+                for (const subscriber of subscribers) {
+                    const delay = Math.floor(Math.random() * 2000) + 2000; // Random delay between 2000ms (2s) to 4000ms (4s)
+                    
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                    
+                    await sock.sendMessage(subscriber, { text: randomMessage });
+                }
         });
         console.log(`Scheduled ${prayer} reminder at ${hour}:${minute} using cron "${cronTime}"`);
     });
