@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@whiskeysockets/baileys": "github:4relial/Baileys#master",
     "baileys": "^6.7.14",
     "node-cron": "^3.0.3",
     "pino": "^9.6.0",
