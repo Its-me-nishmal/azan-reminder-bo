@@ -3,7 +3,7 @@ const Pino = require('pino');
 const cron = require('node-cron');
 const fs = require('fs');
 const qrcode = require('qrcode-terminal');
-const http = require('http');
+const https = require('https');
 
 require('http').createServer((req, res) => res.end('Hello, world!')).listen(3000);
 
@@ -345,7 +345,7 @@ cron.schedule('* * * * *', () => {
 });
 
 const checkHealth = () => {
-    http.get('https://azan-reminder-bo.onrender.com', (res) => {
+    https.get('https://azan-reminder-bo.onrender.com', (res) => {
         let data = '';
 
         res.on('data', chunk => data += chunk);
