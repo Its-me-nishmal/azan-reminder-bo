@@ -96,7 +96,7 @@ async function startBot() {
             // Format prayer times
             let prayerTimesText = `📅 *Today's Prayer Times*\n\n`;
             Object.entries(todaysPrayerTimes).forEach(([prayer, time]) => {
-                prayerTimesText += `🕌 *${prayer}*: ${time}\n`;
+                prayerTimesText += `🕌 *${prayer}*: ${time.toFixed(2)}\n`;
             });
 
             let subscribers = fs.existsSync('subscribers.json')
