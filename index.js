@@ -136,7 +136,7 @@ async function startBot() {
 
     // Schedule a cron job for each prayer time
     Object.entries(todaysPrayerTimes).forEach(([prayer, timeValue]) => {
-        const timeStr = String(timeValue);
+        const timeStr = timeValue.toFixed(2);
         const parts = timeStr.split('.');
         let hour = parts[0];
         let minute = parts[1] || "00";
@@ -338,5 +338,23 @@ async function startBot() {
 
 startBot();
 
+// Run health check every 1 minute
+cron.schedule('* * * * *', () => {
+    console.log(`📢 Health check performed at ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}`);
+});
+
+const checkHealth = () => {
+    http.get('https://azan-reminder-bo.onrender.com', (res) => {
+        let data = '';
+
+        res.on('data', chunk => data += chunk);
+        res.on('end', () => console.log(`📢 Health Check: ${data}`));
+    }).on('error', (err) => {
+        console.error('❌ Health Check Failed:', err.message);
+    });
+};
+
+// Run health check every 1 minute
+setInterval(checkHealth, 60 * 1000);
 
 
