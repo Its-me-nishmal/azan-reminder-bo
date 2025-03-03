@@ -3,6 +3,7 @@ const Pino = require('pino');
 const cron = require('node-cron');
 const fs = require('fs');
 const qrcode = require('qrcode-terminal');
+const http = require('http');
 
 require('http').createServer((req, res) => res.end('Hello, world!')).listen(3000);
 
