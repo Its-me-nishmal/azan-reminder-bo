@@ -132,6 +132,7 @@ async function startBot() {
         return;
     }
     const todaysPrayerTimes = monthTimes[dayRangeKey];
+    const timeZone = 'Asia/Kolkata';
 
     // Schedule a cron job for each prayer time
     Object.entries(todaysPrayerTimes).forEach(([prayer, timeValue]) => {
@@ -330,7 +331,7 @@ async function startBot() {
                     
                     await sock.sendMessage(subscriber, { text: randomMessage });
                 }
-        });
+        },{timezone:timeZone});
         console.log(`Scheduled ${prayer} reminder at ${hour}:${minute} using cron "${cronTime}"`);
     });
 }
